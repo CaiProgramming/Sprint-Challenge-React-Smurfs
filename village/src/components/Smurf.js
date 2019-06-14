@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  opacity:${props => (props.remove ? ".25" : "1")}
+  opacity:${props => (props.remove ? "0" : "1")}
   position:${props => (props.remove ? "absolute" : "relative")}
   transition: all 1s
 
@@ -21,9 +21,9 @@ const CardHeader = styled.div`
   border-top-right-radius: 10px;
 `;
 const SmurfCard = styled.div`
-transition: all 1s;
+  transition: all 1s;
   width:${props => (props.remove ? "1000px" : "500px")}
-  height:${props => (props.remove ? "1000px" : "200px")}
+  height:${props => (props.remove ? "500px" : "200px")}
   display: flex;
   flex-flow: column;
   margin: 25px;
@@ -31,7 +31,7 @@ transition: all 1s;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   @media (max-width: 1300px) {
-    margin: 10px 0px;
+    margin: 10px 10px;
   }
 `;
 
