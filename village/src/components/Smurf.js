@@ -6,6 +6,7 @@ const Container = styled.div`
   opacity:${props => (props.remove ? "0" : "1")}
   position:${props => (props.remove ? "absolute" : "relative")}
   transition: all 1s
+  width: 500px;
 
 `;
 const CardHeader = styled.div`
@@ -30,7 +31,7 @@ const SmurfCard = styled.div`
   border-radius: 10px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-  @media (max-width: 1300px) {
+  @media (max-width: 1250px) {
     margin: 10px 10px;
   }
 `;

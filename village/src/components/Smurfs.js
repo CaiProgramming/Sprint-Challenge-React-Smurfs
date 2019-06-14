@@ -10,11 +10,17 @@ const Container = styled.div`
   justify-content: center;
 `;
 const SmurfContainer = styled.div`
+  transition: all 1s;
   margin: auto;
   display: flex;
   flex-flow: wrap;
   width: 1250px;
   justify-content: center;
+  @media (max-width: 1250px) {
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+  }
 `;
 const CardHeader = styled.h1`
   display: flex;
