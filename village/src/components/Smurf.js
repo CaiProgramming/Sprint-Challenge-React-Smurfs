@@ -16,7 +16,7 @@ const CardHeader = styled.div`
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 `;
-const FriendCard = styled.div`
+const SmurfCard = styled.div`
   display: flex;
   flex-flow: column;
   margin: 25px;
@@ -41,19 +41,24 @@ const ParagraphContent = styled.p`
 const Remove = styled.p`
   font-size: 1.25rem;
   margin: 10px;
-  align-self: flex-end;
   cursor: pointer;
   user-select: none;
 `;
+const RemoveHandler = props => {
+  props.cb(props.id);
+};
 const Smurf = props => {
   return (
-    <FriendCard>
-      <CardHeader>
-        <HeaderContent>{props.name}</HeaderContent>
-      </CardHeader>
-      <HeaderContent>{props.height} tall</HeaderContent>
-      <ParagraphContent>{props.age} smurf years old</ParagraphContent>
-    </FriendCard>
+    <Container>
+      <SmurfCard>
+        <CardHeader>
+          <HeaderContent>{props.name}</HeaderContent>
+          <Remove onClick={e => RemoveHandler(props)}>x</Remove>
+        </CardHeader>
+        <HeaderContent>{props.height} tall</HeaderContent>
+        <ParagraphContent>{props.age} smurf years old</ParagraphContent>
+      </SmurfCard>
+    </Container>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import Smurf from "./Smurf";
 import styled from "styled-components";
+import axios from "axios";
 const Container = styled.div`
   display: flex;
   flex-flow: column;
@@ -15,9 +16,24 @@ const SmurfContainer = styled.div`
   width: 1250px;
   justify-content: center;
 `;
+const CardHeader = styled.h1`
+  display: flex;
+  justify-content: center;
+`;
 class Smurfs extends Component {
+  state = {
+    smurfs: []
+  };
+
+  componentDidMount = () => {
+    axios.get("/smurfs").then(res => {
+      this.setState({
+        smurfs: res.data
+      });
+    });
+  };
   createSmurfs = () => {
-    return this.props.smurfs.map(smurf => {
+    return this.state.smurfs.map(smurf => {
       return (
         <Smurf
           name={smurf.name}
@@ -25,14 +41,26 @@ class Smurfs extends Component {
           age={smurf.age}
           height={smurf.height}
           key={smurf.id}
+          cb={this.cbRemoveSmurf}
         />
       );
     });
   };
+  cbRemoveSmurf = id => {
+    if (id || id === 0) {
+      let smurfs = this.state.smurfs.filter(smurf => smurf.id != id);
+      console.log(smurfs);
+      axios.delete(`smurfs/${id}`).then(res => {
+        this.setState({
+          smurfs: [...smurfs]
+        });
+      });
+    }
+  };
   render() {
     return (
       <Container>
-        <h1>Smurf Village</h1>
+        <CardHeader>Smurf Village</CardHeader>
         <SmurfContainer>{this.createSmurfs()}</SmurfContainer>
       </Container>
     );
