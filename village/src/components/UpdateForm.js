@@ -78,6 +78,7 @@ class smurfForm extends React.Component {
   componentDidMount = () => {
     axios.get("/smurfs").then(res => {
       this.setState({ smurfs: res.data });
+      console.log(res.data);
     });
   };
   optionsHandler = () => {
