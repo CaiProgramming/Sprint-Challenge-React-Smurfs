@@ -47,15 +47,17 @@ class Smurfs extends Component {
     });
   };
   cbRemoveSmurf = id => {
-    if (id || id === 0) {
-      let smurfs = this.state.smurfs.filter(smurf => smurf.id != id);
-      console.log(smurfs);
-      axios.delete(`smurfs/${id}`).then(res => {
-        this.setState({
-          smurfs: [...smurfs]
+    setTimeout(() => {
+      if (id || id === 0) {
+        let smurfs = this.state.smurfs.filter(smurf => smurf.id != id);
+        console.log(smurfs);
+        axios.delete(`smurfs/${id}`).then(res => {
+          this.setState({
+            smurfs: [...smurfs]
+          });
         });
-      });
-    }
+      }
+    }, 1000);
   };
   render() {
     return (

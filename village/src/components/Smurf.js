@@ -3,6 +3,10 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  opacity:${props => (props.remove ? ".25" : "1")}
+  position:${props => (props.remove ? "absolute" : "relative")}
+  transition: all 1s
+
 `;
 const CardHeader = styled.div`
   display: flex;
@@ -17,11 +21,12 @@ const CardHeader = styled.div`
   border-top-right-radius: 10px;
 `;
 const SmurfCard = styled.div`
+transition: all 1s;
+  width:${props => (props.remove ? "1000px" : "500px")}
+  height:${props => (props.remove ? "1000px" : "200px")}
   display: flex;
   flex-flow: column;
   margin: 25px;
-  width: 500px;
-  height: 200px;
   border-radius: 10px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
@@ -44,23 +49,32 @@ const Remove = styled.p`
   cursor: pointer;
   user-select: none;
 `;
-const RemoveHandler = props => {
-  props.cb(props.id);
-};
-const Smurf = props => {
-  return (
-    <Container>
-      <SmurfCard>
-        <CardHeader>
-          <HeaderContent>{props.name}</HeaderContent>
-          <Remove onClick={e => RemoveHandler(props)}>x</Remove>
-        </CardHeader>
-        <HeaderContent>{props.height} tall</HeaderContent>
-        <ParagraphContent>{props.age} smurf years old</ParagraphContent>
-      </SmurfCard>
-    </Container>
-  );
-};
+
+class Smurf extends React.Component {
+  state = {
+    remove: false
+  };
+  RemoveHandler = () => {
+    this.setState({
+      remove: true
+    });
+    this.props.cb(this.props.id);
+  };
+  render() {
+    return (
+      <Container remove={this.state.remove}>
+        <SmurfCard remove={this.state.remove}>
+          <CardHeader>
+            <HeaderContent>{this.props.name}</HeaderContent>
+            <Remove onClick={this.RemoveHandler}>x</Remove>
+          </CardHeader>
+          <HeaderContent>{this.props.height} tall</HeaderContent>
+          <ParagraphContent>{this.props.age} smurf years old</ParagraphContent>
+        </SmurfCard>
+      </Container>
+    );
+  }
+}
 
 Smurf.defaultProps = {
   name: "",
