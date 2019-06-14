@@ -113,7 +113,7 @@ class SmurfForm extends Component {
               <Btn onClick={this.addSmurf} type="submit">
                 Add to the village
               </Btn>
-            </Container>
+            </Containe>
           </form>
         </SmurfCard>
       </Container>
